@@ -1,0 +1,36 @@
+# Dual-Rocket override configurations for sky130 (two Rocket cores)
+# Based on the single-Rocket example; positions two Rocket toplevels side-by-side.
+
+# Specify clock signals
+# Rocket/RocketTile names clock signal "clock" instead of "clock_uncore"
+vlsi.inputs.clocks: [
+  {name: "clock", period: "20ns", uncertainty: "1ns"}
+]
+
+# Placement Constraints
+# Place two Rocket toplevel instances (Rocket_0 and Rocket_1) next to each other.
+vlsi.inputs.placement_constraints:
+  - path: "Rocket_0"
+    type: toplevel
+    x: 0
+    y: 0
+    width: 2500.1
+    height: 1496
+    margins:
+      left: 10.12
+      right: 10.12
+      top: 10.88
+      bottom: 10.88
+
+  - path: "Rocket_1"
+    type: toplevel
+    # place Rocket_1 to the right of Rocket_0 with a small gap (250 pixels)
+    x: 2750.1
+    y: 0
+    width: 2500.1
+    height: 1496
+    margins:
+      left: 10.12
+      right: 10.12
+      top: 10.88
+      bottom: 10.88
